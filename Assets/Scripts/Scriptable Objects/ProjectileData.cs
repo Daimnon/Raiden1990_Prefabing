@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ProjectileType { QuickFiringArtillery, ExplosiveShells, ArmourPiercingShot }
+public enum ProjectileType { BasicArtillery, QuickFiringArtillery, ExplosiveShells, ArmourPiercingShot }
 
-[CreateAssetMenu(fileName = "new ProjectileData", menuName = "ScriptableObjects", order = 1)]
+[CreateAssetMenu(fileName = "new ProjectileData", menuName = "Projectile Data", order = 1)]
 public class ProjectileData : ScriptableObject
 {
     public ProjectileType ProjectileType;
-
-    private void Awake()
-    {
-        
-    }
+    public GameObject ProjectilePrefab;
+    public float FireRate, Damage;
+    public int Quantity;
 }
