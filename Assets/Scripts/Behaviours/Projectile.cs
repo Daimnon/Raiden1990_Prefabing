@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private ProjectileData _playerProjectileData;
+    [SerializeField] private ProjectileData _playerProjectileDataHandler;
 
     private ProjectileType _projectileType;
     private GameObject _projectilePrefab;
@@ -13,22 +13,37 @@ public class Projectile : MonoBehaviour
 
     private void Awake()
     {
-        _projectileType = _playerProjectileData.ProjectileType;
-        _projectilePrefab = _playerProjectileData.ProjectilePrefab;
-        _fireRate = _playerProjectileData.FireRate;
-        _damage = _playerProjectileData.Damage;
-        _quantity = _playerProjectileData.Quantity;
+        _projectileType = _playerProjectileDataHandler.ProjectileType;
+        _projectilePrefab = _playerProjectileDataHandler.ProjectilePrefab;
+        _fireRate = _playerProjectileDataHandler.FireRate;
+        _damage = _playerProjectileDataHandler.Damage;
+        _quantity = _playerProjectileDataHandler.Quantity;
     }
 
-    //private void Update()
-    //{
-    //    if (_playerProjectileData.ProjectileType == _projectileType)
-    //        return;
-    //
-    //    _projectileType = _playerProjectileData.ProjectileType;
-    //    _projectilePrefab = _playerProjectileData.ProjectilePrefab;
-    //    _fireRate = _playerProjectileData.FireRate;
-    //    _damage = _playerProjectileData.Damage;
-    //    _quantity = _playerProjectileData.Quantity;
-    //}
+    public void ChangeProjectileData(int desiredProjectileType)
+    {
+        _playerProjectileDataHandler.ProjectileType = (ProjectileType)desiredProjectileType;
+
+        switch (_playerProjectileDataHandler.ProjectileType)
+        {
+            case ProjectileType.BasicArtillery:
+                _playerProjectileDataHandler = _playerProjectileDataHandler.BasicArtillery;
+                _playerProjectileDataHandler.ProjectilePrefab.GetComponent<SpriteRenderer>().color = Color.white;
+                break;
+            case ProjectileType.QuickFiringArtillery:
+                _playerProjectileDataHandler = _playerProjectileDataHandler.QuickFiringArtillery;
+                _playerProjectileDataHandler.ProjectilePrefab.GetComponent<SpriteRenderer>().color = Color.green;
+                break;
+            case ProjectileType.ExplosiveShells:
+                _playerProjectileDataHandler = _playerProjectileDataHandler.ExplosiveShells;
+                _playerProjectileDataHandler.ProjectilePrefab.GetComponent<SpriteRenderer>().color = Color.red;
+                break;
+            case ProjectileType.ArmourPiercingShot:
+                _playerProjectileDataHandler = _playerProjectileDataHandler.ArmourPiercingShot;
+                _playerProjectileDataHandler.ProjectilePrefab.GetComponent<SpriteRenderer>().color = Color.cyan;
+                break;
+            default:
+                break;
+        }
+    }
 }

@@ -7,6 +7,8 @@ public class CombatManager : MonoBehaviour
     [Header("Player Data Reference")]
     [SerializeField] private DataHandler _playerProjectileDataHandler;
 
+    private Projectile _projectile;
+
     public void ChangeProjectileData(int desiredProjectileType)
     {
         _playerProjectileDataHandler.PlayerProjectileData.ProjectileType = (ProjectileType)desiredProjectileType;
