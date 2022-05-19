@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ExplosiveShells
   m_EditorClassIdentifier: 
   ProjectileType: 2
-  ProjectilePrefab: {fileID: 0}
+  ProjectilePrefab: {fileID: 8252761269446752089, guid: c7dedc451f877924aa8982f8c5550d3a, type: 3}
   FireRate: 0.75
   Damage: 3
   Quantity: 2

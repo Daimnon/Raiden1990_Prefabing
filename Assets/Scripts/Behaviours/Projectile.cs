@@ -20,15 +20,15 @@ public class Projectile : MonoBehaviour
         _quantity = _playerProjectileData.Quantity;
     }
 
-    private void Update()
-    {
-        if (_playerProjectileData.ProjectileType == _projectileType)
-            return;
-
-        _projectileType = _playerProjectileData.ProjectileType;
-        _projectilePrefab = _playerProjectileData.ProjectilePrefab;
-        _fireRate = _playerProjectileData.FireRate;
-        _damage = _playerProjectileData.Damage;
-        _quantity = _playerProjectileData.Quantity;
-    }
+    //private void Update()
+    //{
+    //    if (_playerProjectileData.ProjectileType == _projectileType)
+    //        return;
+    //
+    //    _projectileType = _playerProjectileData.ProjectileType;
+    //    _projectilePrefab = _playerProjectileData.ProjectilePrefab;
+    //    _fireRate = _playerProjectileData.FireRate;
+    //    _damage = _playerProjectileData.Damage;
+    //    _quantity = _playerProjectileData.Quantity;
+    //}
 }
