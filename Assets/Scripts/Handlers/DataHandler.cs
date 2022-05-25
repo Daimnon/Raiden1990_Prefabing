@@ -14,6 +14,7 @@ public class DataHandler : MonoBehaviour
     public ProjectileData BasicArtillery;
     public ProjectileData ArmourPiercingShot, ExplosiveShells, QuickFiringArtillery;
 
+    public int _powerCount = 0;
 
     private void Start()
     {

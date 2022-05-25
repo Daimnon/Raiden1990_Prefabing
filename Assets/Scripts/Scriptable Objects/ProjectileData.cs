@@ -8,6 +8,7 @@ public enum ProjectileType { BasicArtillery = 0, QuickFiringArtillery = 1, Explo
 public class ProjectileData : ScriptableObject
 {
     public ProjectileType ProjectileType;
+    public Color ProjectileColor;
     public GameObject ProjectilePrefab;
     public float FireRate, Damage;
     public int Quantity;

@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: ArmourPiercingShot
   m_EditorClassIdentifier: 
   ProjectileType: 3
+  ProjectileColor: {r: 0, g: 1, b: 0.9495225, a: 0}
   ProjectilePrefab: {fileID: 8252761269446752089, guid: c7dedc451f877924aa8982f8c5550d3a, type: 3}
+  GunPosition: {fileID: 0}
   FireRate: 1
   Damage: 7
   Quantity: 1
