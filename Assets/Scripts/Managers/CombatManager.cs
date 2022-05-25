@@ -7,37 +7,47 @@ public class CombatManager : MonoBehaviour
     [Header("Player Data Reference")]
     [SerializeField] private DataHandler _playerProjectileDataHandler;
 
-    private Projectile _projectile;
-
-    public void ChangeProjectileData(int desiredProjectileType)
+    public void ChangeProjectileData(int desiredProjectileType, GameObject projectile)
     {
-        _playerProjectileDataHandler.PlayerProjectileData.ProjectileType = (ProjectileType)desiredProjectileType;
-
-        switch (_playerProjectileDataHandler.PlayerProjectileData.ProjectileType)
+        switch ((ProjectileType)desiredProjectileType)
         {
             case ProjectileType.BasicArtillery:
                 _playerProjectileDataHandler.PlayerProjectileData = _playerProjectileDataHandler.BasicArtillery;
-                _playerProjectileDataHandler.PlayerProjectileData.ProjectilePrefab.GetComponent<SpriteRenderer>().color = Color.white;
+                projectile.GetComponent<SpriteRenderer>().color = Color.white;
                 break;
             case ProjectileType.QuickFiringArtillery:
                 _playerProjectileDataHandler.PlayerProjectileData = _playerProjectileDataHandler.QuickFiringArtillery;
-                _playerProjectileDataHandler.PlayerProjectileData.ProjectilePrefab.GetComponent<SpriteRenderer>().color = Color.green;
+                projectile.GetComponent<SpriteRenderer>().color = Color.green;
                 break;
             case ProjectileType.ExplosiveShells:
                 _playerProjectileDataHandler.PlayerProjectileData = _playerProjectileDataHandler.ExplosiveShells;
-                _playerProjectileDataHandler.PlayerProjectileData.ProjectilePrefab.GetComponent<SpriteRenderer>().color = Color.red;
+                projectile.GetComponent<SpriteRenderer>().color = Color.red;
                 break;
             case ProjectileType.ArmourPiercingShot:
                 _playerProjectileDataHandler.PlayerProjectileData = _playerProjectileDataHandler.ArmourPiercingShot;
-                _playerProjectileDataHandler.PlayerProjectileData.ProjectilePrefab.GetComponent<SpriteRenderer>().color = Color.cyan;
+                projectile.GetComponent<SpriteRenderer>().color = Color.cyan;
                 break;
+
             default:
                 break;
         }
     }
 
-    public void FireProjectile()
+    public void UpdateProjectile(Projectile projectile)
     {
-        Instantiate(_playerProjectileDataHandler.PlayerProjectileData.ProjectilePrefab, new Vector3(0f, 0f, 1f), Quaternion.identity);
+        projectile.ProjectileType = _playerProjectileDataHandler.PlayerProjectileData.ProjectileType;
+        projectile.ProjectilePrefab = _playerProjectileDataHandler.PlayerProjectileData.ProjectilePrefab;
+        projectile.FireRate = _playerProjectileDataHandler.PlayerProjectileData.FireRate;
+        projectile.Damage = _playerProjectileDataHandler.PlayerProjectileData.Damage;
+        projectile.Quantity = _playerProjectileDataHandler.PlayerProjectileData.Quantity;
+    }
+
+    public void FireProjectile(int desiredProjectileType)
+    {
+        GameObject projectileGO;
+        projectileGO = Instantiate(_playerProjectileDataHandler.PlayerProjectileData.ProjectilePrefab, new Vector3(0f, 0f, 1f), Quaternion.identity);
+        Projectile projectile = projectileGO.GetComponent<Projectile>();
+        UpdateProjectile(projectile);
+        ChangeProjectileData(desiredProjectileType, projectileGO);
     }
 }

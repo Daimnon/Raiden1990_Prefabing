@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8252761269446752090}
   - component: {fileID: 8252761269446752091}
-  - component: {fileID: 8252761269446752088}
+  - component: {fileID: -2633162428815053396}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8252761269446752088
+--- !u!114 &-2633162428815053396
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,4 +95,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65108a389f70af4c92b4bc4b411ad75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerProjectileData: {fileID: 11400000, guid: 91d8a6f7e4cddfa4e9b0a029f2b7ab56, type: 2}
