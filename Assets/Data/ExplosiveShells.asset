@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: ExplosiveShells
   m_EditorClassIdentifier: 
   ProjectileType: 2
+  ProjectileColor: {r: 0.9622642, g: 0, b: 0, a: 0}
   ProjectilePrefab: {fileID: 8252761269446752089, guid: c7dedc451f877924aa8982f8c5550d3a, type: 3}
+  GunPosition: {fileID: 0}
   FireRate: 0.75
   Damage: 3
   Quantity: 2
