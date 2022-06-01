@@ -5,25 +5,26 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     //var
-    public int hp = 100;
-    [SerializeField]
-    private int currentHP;
+    public float hp = 100;
+    public float CurrentHP;
     public float projSpeed = 5f;
-    private float fireTime = 2f;
-    public float animDelay = 0f;
+    private float _shotCooldown = 0;
+    public float FireRate = 1;
+    public float animDelay = 0;
     float rTime;
     public EnemyManager manager;
     public Player player;
 
     //intiate
-    public Rigidbody2D projectile;
+    [SerializeField] private Transform _enemyGunPos;
+    public GameObject projectile;
     private Animator anim;
 
 
 
     void Start()
     {
-        currentHP = hp;
+        CurrentHP = hp;
         anim = gameObject.GetComponent<Animator>();
         rTime = Random.Range(5, 10);
     }
@@ -31,23 +32,25 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        if (_shotCooldown > 0)
+            _shotCooldown -= Time.deltaTime;
 
-        if (Time.time > fireTime)
-        {
-            fireTime += rTime;
-            Rigidbody2D proj = Instantiate(projectile);
-            proj.transform.position = transform.position;
-            proj.velocity = Vector2.down * projSpeed;
-        }
+        if (_shotCooldown < 0)
+            _shotCooldown = 0;
 
+        if (_shotCooldown != 0)
+            return;
+
+        _shotCooldown = FireRate / 2;
+        GameObject proj = Instantiate(projectile, _enemyGunPos);
     }
 
     public void Damage(int damage)
     {
-        if (currentHP <= 0) return;
-        currentHP -= damage;
+        if (CurrentHP <= 0) return;
+        CurrentHP -= damage;
 
-        if (currentHP <= 0) // enemy died
+        if (CurrentHP <= 0) // enemy died
         {
             anim.Play("Destroy");
             Destroy(gameObject, this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length + animDelay);

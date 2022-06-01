@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-
     [SerializeField] private float speed = 2;
     int move = 1;
-    public float topEdge, leftEdge;
+    public float topEdge;
     public int enemiesCount;
     public bool lost;
 
@@ -29,10 +28,6 @@ public class EnemyManager : MonoBehaviour
         {
             move *= -1;
         }
-        //else if (move < 0 && transform.position.y < leftEdge)
-        //{
-        //    move *= -1;
-        //}
     }
 
     public void EnemyDestroyed()

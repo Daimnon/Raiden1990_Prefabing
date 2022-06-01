@@ -30,4 +30,12 @@ public class Projectile : MonoBehaviour
         transform.parent = null;
         transform.position += new Vector3(0f, _projectileSpeed / (_projectileSpeedModifier * 10), 0f);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 7)
+        {
+            collision.gameObject.GetComponent<Enemy>().CurrentHP -= _damage;
+        }
+    }
 }
