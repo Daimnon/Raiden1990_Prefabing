@@ -7,12 +7,15 @@ public class CombatManager : MonoBehaviour
     [Header("Player Data Reference")]
     [SerializeField] private DataHandler _playerProjectileDataHandler;
 
-    [SerializeField] private Transform _gunPosition;
+    [Header("Player Guns Positions")]
+    [SerializeField] private Transform _playerGunPosition;
+    [SerializeField] private Transform _playerSecondaryLeftGunPosition, _playerSecondaryRightGunPosition;
+
+    private float _shotCooldown = 0;
 
     private void Update()
     {
-        //if (_playerProjectileDataHandler.IsProjectileChanged)
-        //    UpdateProjectile(projectile);
+        FireProjectile();
     }
 
     public void ChangeProjectileData(int desiredProjectileType, GameObject projectile)
@@ -47,15 +50,37 @@ public class CombatManager : MonoBehaviour
         projectile.FireRate = _playerProjectileDataHandler.PlayerProjectileData.FireRate;
         projectile.Damage = _playerProjectileDataHandler.PlayerProjectileData.Damage;
         projectile.Quantity = _playerProjectileDataHandler.PlayerProjectileData.Quantity;
-        
     }
 
-    public void FireProjectile(int desiredProjectileType)
+    public void FireProjectile()
     {
-        GameObject projectileGO;
-        projectileGO = Instantiate(_playerProjectileDataHandler.PlayerProjectileData.ProjectilePrefab, _gunPosition);
-        Projectile projectile = projectileGO.GetComponent<Projectile>();
-        UpdateProjectile(projectile);
-        //ChangeProjectileData(desiredProjectileType, projectileGO);
+        if (_shotCooldown > 0)
+            _shotCooldown -= Time.deltaTime;
+
+        if (_shotCooldown < 0)
+            _shotCooldown = 0;
+
+        if (_shotCooldown != 0)
+            return;
+
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+        {
+            GameObject projectileGO;
+            projectileGO = Instantiate(_playerProjectileDataHandler.PlayerProjectileData.ProjectilePrefab, _playerGunPosition);
+
+            Projectile projectile = projectileGO.GetComponent<Projectile>();
+            UpdateProjectile(projectile);
+
+            _shotCooldown = projectile.FireRate / 2;
+
+            for (int i = 0; i < projectile.Quantity - 1; i++)
+            {
+                if (projectile.Quantity == 3)
+                {
+                    Instantiate(_playerProjectileDataHandler.PlayerProjectileData.ProjectilePrefab, _playerSecondaryLeftGunPosition);
+                    Instantiate(_playerProjectileDataHandler.PlayerProjectileData.ProjectilePrefab, _playerSecondaryRightGunPosition);
+                }
+            }
+        }
     }
 }

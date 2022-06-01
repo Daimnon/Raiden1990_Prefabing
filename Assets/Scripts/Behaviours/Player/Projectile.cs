@@ -14,6 +14,7 @@ public class Projectile : MonoBehaviour
     private float _fireRate, _damage;
     private int _quantity;
 
+
     public ProjectileType ProjectileType { get => _projectileType; set => _projectileType = value; }
     public Color ProjectileColor { get => _projectileColor; set => _projectileColor = value; }
     public GameObject ProjectilePrefab { get => _projectilePrefab; set => _projectilePrefab = value; }
@@ -26,6 +27,7 @@ public class Projectile : MonoBehaviour
         if (!_selfRenderer.isVisible)
             Destroy(gameObject);
 
+        transform.parent = null;
         transform.position += new Vector3(0f, _projectileSpeed / (_projectileSpeedModifier * 10), 0f);
     }
 }

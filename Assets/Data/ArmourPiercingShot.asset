@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectileType: 3
   ProjectileColor: {r: 0, g: 1, b: 0.9495225, a: 0}
-  ProjectilePrefab: {fileID: 8252761269446752089, guid: c7dedc451f877924aa8982f8c5550d3a, type: 3}
-  GunPosition: {fileID: 0}
-  FireRate: 1
+  ProjectilePrefab: {fileID: 8252761269446752089, guid: 3cd6e18543757c34d9a9e13fb75c5343, type: 3}
+  FireRate: 3
   Damage: 7
   Quantity: 1

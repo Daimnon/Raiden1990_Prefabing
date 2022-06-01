@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     Vector3 mousePosition;
     public float mouseSpeed = 0.1f;
+    public int health = 3;
+    public Image[] hearts;
     Rigidbody2D rb;
     public float speed = 6;
     public bool shieldCooldowm = true;
@@ -16,6 +19,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        UpdateHealth();
+
         mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         position = Vector2.Lerp(transform.position, mousePosition, mouseSpeed);
@@ -36,6 +41,22 @@ public class Player : MonoBehaviour
             shieldCooldowm = false;
         }
     }
+
+    private void UpdateHealth()
+    {
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < health)
+            {
+                hearts[i].enabled = true;
+            }
+            else
+            {
+                hearts[i].enabled = false;
+            }
+        }
+    }
+
 
     private void FixedUpdate()
     {
