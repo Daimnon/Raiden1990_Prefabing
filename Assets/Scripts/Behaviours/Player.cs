@@ -4,22 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Vector3 mousePosition;
-    public float mouseSpeed = 0.1f;
-    Rigidbody2D rb;
-    public float speed = 6;
+    public float speed = 3;
     public bool shieldCooldowm = true;
-    public int cooldown = 10;
+    public bool shieldActive = false;
+    public float cooldown = 10;
     public float duration = 1.5f;
     public GameObject shield;
-    Vector2 position = new Vector2(0f, 0f);
 
     void Update()
     {
-        mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        position = Vector2.Lerp(transform.position, mousePosition, mouseSpeed);
-
         // Player movement with keyboard
         float horizontalMove = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
         transform.position += new Vector3(horizontalMove, 0);
@@ -34,12 +27,8 @@ public class Player : MonoBehaviour
             StartCoroutine(Deactivate());
             StartCoroutine(Cooldown());
             shieldCooldowm = false;
+            shieldActive = true;
         }
-    }
-
-    private void FixedUpdate()
-    {
-        rb.MovePosition(position);
     }
 
     IEnumerator Cooldown()
@@ -52,5 +41,14 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         shield.SetActive(false);
+        shieldActive = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Obstacle")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
