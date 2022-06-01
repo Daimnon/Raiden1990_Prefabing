@@ -10,7 +10,7 @@ public class AIProjectile : MonoBehaviour
         if (coll.CompareTag("Player"))
         {
             Player player = coll.GetComponent<Player>();
-            player.Damage();
+            //player.Damage();
             Destroy(gameObject);
         }
     }

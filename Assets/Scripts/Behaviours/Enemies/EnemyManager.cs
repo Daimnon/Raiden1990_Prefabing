@@ -7,7 +7,7 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField] private float speed = 2;
     int move = 1;
-    public float rightEdge, leftEdge;
+    public float topEdge, leftEdge;
     public int enemiesCount;
     public bool lost;
 
@@ -24,15 +24,15 @@ public class EnemyManager : MonoBehaviour
 
     void Update()
     {
-        transform.position += new Vector3(move * speed * Time.deltaTime, 0);
-        if (move > 0 && transform.position.x > rightEdge)
+        transform.position += new Vector3(0, -move * speed * Time.deltaTime, 0);
+        if (move > 0 && transform.position.y > topEdge)
         {
             move *= -1;
         }
-        else if (move < 0 && transform.position.x < leftEdge)
-        {
-            move *= -1;
-        }
+        //else if (move < 0 && transform.position.y < leftEdge)
+        //{
+        //    move *= -1;
+        //}
     }
 
     public void EnemyDestroyed()
