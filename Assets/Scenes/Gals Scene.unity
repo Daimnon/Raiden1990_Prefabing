@@ -1466,7 +1466,7 @@ MonoBehaviour:
   projSpeed: 5
   animDelay: 0
   manager: {fileID: 1820157991}
-  player: {fileID: 0}
+  player: {fileID: 1927500065}
   projectile: {fileID: 0}
 --- !u!212 &1308141651
 SpriteRenderer:
@@ -2200,11 +2200,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d2dca364799ec740bd1ee25513bd859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSpeed: 0.1
-  health: 3
-  hearts: []
   speed: 6
   shieldCooldowm: 1
+  shieldActive: 0
   cooldown: 10
   duration: 1.5
   shield: {fileID: 0}
